@@ -8,7 +8,7 @@ import constants
 def read(args):
     """read config file"""
 
-    from ConfigParser import NoSectionError, MissingSectionHeaderError
+    from configparser import NoSectionError, MissingSectionHeaderError
 
     config_file = args.config
     if not config_file:
