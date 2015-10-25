@@ -11,7 +11,7 @@ itms = OrderedDict((
     ('n', Itmtp('job name', ['Job_Name'])),
     ('o', Itmtp('job owner', ['Job_Owner'])),
     ('s', Itmtp('job state', ['job_state'])),
-    ('t', Itmtp('job start/submission time', ['mtime',
+    ('t', Itmtp('job start/submission time', ['start_time',
                                               'qtime'])),
     ('e', Itmtp('elapsed time since start/submission', [])),
     ('q', Itmtp('queue name without domain', ['queue'])),
