@@ -137,7 +137,7 @@ class JobList:
     def rep_tot(self):
         """handle the representation of the totals"""
 
-        from itertools import izip_longest as ziplgst
+        from itertools import zip_longest as ziplgst
         from math import ceil
 
         yield 'tot: {}'.format(len(self.jobset))

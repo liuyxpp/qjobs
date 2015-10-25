@@ -26,7 +26,7 @@ def main():
         print('trailing spaces to set to an actual x/empty string', end='\n\n')
         args = vars(args)
         for opt, dflt_val in constants.default_config.items():
-            new_val = raw_input('{}: {} ({})> '.format(opt, args[opt], dflt_val))
+            new_val = input('{}: {} ({})> '.format(opt, args[opt], dflt_val))
             if new_val:
                 if new_val == 'x':
                     args[opt] = dflt_val
@@ -86,7 +86,7 @@ if __name__ == '__main__':
         main()
     except Exception as excpt:
 
-        from ConfigParser import NoSectionError, MissingSectionHeaderError
+        from configparser import NoSectionError, MissingSectionHeaderError
 
         if excpt not in (SystemExit, NoSectionError,
                          MissingSectionHeaderError):
