@@ -27,14 +27,14 @@ path_config = expanduser(expandvars(path_config))
 dflt_section = 'Defaults'
 
 default_config = OrderedDict((
-    ('out', 'instq'),
+    ('out', 'inesq'),
     ('total', 's'),
     ('sort', 'ips'),
     ('reversed_itms', 'psl'),
     ('out_format', ''),
     ('start_format', '{Y}-{m}-{d} {H}:{M}:{S}'),
-    ('elapsed_format', '{H:03d}:{m:02d} ({D:.2f} days)'),
-    ('width_tot', 120),
+    ('elapsed_format', '{H:02d}:{m:02d}'),
+    ('width_tot', 80),
     ('sep_tot', '[     ]'),
     ('sep', '[   ]'),
     ('users', 'lyx'),
