@@ -1,6 +1,7 @@
-#!PYTHON_CMD
+#!/home/lyx/Enthought/Canopy_64bit/User/bin/python2
 """qjobs is a qstat wrapper designed to get a better output."""
 
+from __future__ import print_function
 import sys
 
 
@@ -25,7 +26,7 @@ def main():
         print('trailing spaces to set to an actual x/empty string', end='\n\n')
         args = vars(args)
         for opt, dflt_val in constants.default_config.items():
-            new_val = input('{}: {} ({})> '.format(opt, args[opt], dflt_val))
+            new_val = raw_input('{}: {} ({})> '.format(opt, args[opt], dflt_val))
             if new_val:
                 if new_val == 'x':
                     args[opt] = dflt_val
@@ -47,14 +48,19 @@ def main():
         qstat_out = args.file
     else:
         qstat_out = Popen(args.qstat_cmd +
-                          ' -u "' + args.users + '" -xml -r',
+                          #' -u "' + args.users + '" -x -r',
+			  ' -x',
                           shell=True, stdout=PIPE).stdout
 
-    qstat_out = ET.parse(qstat_out).getroot().iter('job_list')
+    qstat_out = ET.parse(qstat_out).getroot().iter('Job')
 
     alljobs = []
     today = datetime.today()
     for j in qstat_out:
+	for user in j.iter('Job_Owner'):
+	    user = user.text.split('@')[0]
+	if not user == args.users:
+	    continue 
         alljobs.append(Job(j, args, today))
 
     if not alljobs:
@@ -80,7 +86,7 @@ if __name__ == '__main__':
         main()
     except Exception as excpt:
 
-        from configparser import NoSectionError, MissingSectionHeaderError
+        from ConfigParser import NoSectionError, MissingSectionHeaderError
 
         if excpt not in (SystemExit, NoSectionError,
                          MissingSectionHeaderError):

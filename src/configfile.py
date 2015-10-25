@@ -1,6 +1,7 @@
 """provides read/write config file functions"""
 
-from configparser import ConfigParser as config_parser
+from __future__ import print_function
+from ConfigParser import SafeConfigParser as config_parser
 
 import constants
 
@@ -8,7 +9,7 @@ import constants
 def read(args):
     """read config file"""
 
-    from configparser import NoSectionError, MissingSectionHeaderError
+    from ConfigParser import NoSectionError, MissingSectionHeaderError
 
     config_file = args.config
     if not config_file:

@@ -6,22 +6,22 @@ from os.path import expandvars, expanduser
 Itmtp = namedtuple('Itmtp', ['dscr', 'xml_tag'])
 
 itms = OrderedDict((
-    ('i', Itmtp('job id', ['JB_job_number'])),
-    ('p', Itmtp('job priority', ['JAT_prio'])),
-    ('n', Itmtp('job name', ['JB_name'])),
-    ('o', Itmtp('job owner', ['JB_owner'])),
-    ('s', Itmtp('job state', ['state'])),
-    ('t', Itmtp('job start/submission time', ['JAT_start_time',
-                                              'JB_submission_time'])),
+    ('i', Itmtp('job id', ['Job_Id'])),
+    ('p', Itmtp('job priority', ['Priority'])),
+    ('n', Itmtp('job name', ['Job_Name'])),
+    ('o', Itmtp('job owner', ['Job_Owner'])),
+    ('s', Itmtp('job state', ['job_state'])),
+    ('t', Itmtp('job start/submission time', ['mtime',
+                                              'qtime'])),
     ('e', Itmtp('elapsed time since start/submission', [])),
-    ('q', Itmtp('queue name without domain', [])),
-    ('d', Itmtp('queue domain', [])),
-    ('k', Itmtp('queue name with domain', ['queue_name'])),
+    ('q', Itmtp('queue name without domain', ['queue'])),
+    ('d', Itmtp('queue domain', ['server'])),
+    ('k', Itmtp('queue name with domain', [])),
     ('r', Itmtp('requested queue(s)', ['hard_req_queue'])),
     ('l', Itmtp('number of slots used', ['slots']))
     ))
 
-path_config = 'PATH_CONFIG'
+path_config = '/home/lyx/.config/qjobs/qjobs.rc'
 path_config = expanduser(expandvars(path_config))
 
 dflt_section = 'Defaults'
@@ -37,7 +37,7 @@ default_config = OrderedDict((
     ('width_tot', 120),
     ('sep_tot', '[     ]'),
     ('sep', '[   ]'),
-    ('users', 'USER_NAME'),
-    ('editor', 'EDITOR'),
-    ('qstat_cmd', 'QSTAT_CMD')
+    ('users', 'lyx'),
+    ('editor', 'vim'),
+    ('qstat_cmd', '/usr/local/bin/qstat')
     ))

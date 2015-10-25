@@ -29,11 +29,11 @@ class Job:
                 if self.dct[itm]:
                     break
 
-        self.dct['i'] = int(self.dct['i'])
+        self.dct['i'] = int(self.dct['i'].split('.')[0])
         self.idt = self.dct['i']
 
         if self.dct['k']:
-            self.dct['q'], self.dct['d'] = self.dct['k'].rsplit('@')
+            self.dct['k'] = self.dct['q'] + '@' + self.dct['d']
 
         self.update(today, args)
 
@@ -137,7 +137,7 @@ class JobList:
     def rep_tot(self):
         """handle the representation of the totals"""
 
-        from itertools import zip_longest as ziplgst
+        from itertools import izip_longest as ziplgst
         from math import ceil
 
         yield 'tot: {}'.format(len(self.jobset))
